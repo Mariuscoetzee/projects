@@ -12,7 +12,7 @@ public class Producer implements Runnable{
 /**
  * Special element sent from the Producer to signal that the Producer has stopped producing, and has terminated. 
  */
-    public static final int STOP_VALUE = 1;
+    public static final int STOP_VALUE = -2147483648;
     private BoundedBuffer buffer;
     private int max;
     /**
@@ -30,14 +30,12 @@ public class Producer implements Runnable{
      */
     @Override
     public void run() {
-
-        for (int i = 0; i < max -1 ; i++) {
-            buffer.put(i*2);
+        for (int i = 0; i < max ; i++) {
+            buffer.put(i);
 //            System.out.println("put : " + i*2 );
         }
-        
        buffer.put(STOP_VALUE);
-       System.out.println("put : " + STOP_VALUE);
+//       System.out.println("put : " + STOP_VALUE);
     }
     
     public void setmax(final int max){

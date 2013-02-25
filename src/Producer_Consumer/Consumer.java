@@ -7,7 +7,7 @@ package Producer_Consumer;
  * A Consumer in a Producer-Consumer application
  */
 public class Consumer implements Runnable{
-public static final int STOP_VALUE = 1;
+
 
     private BoundedBuffer buffer;
     /**
@@ -22,7 +22,7 @@ public static final int STOP_VALUE = 1;
     @Override
     public void run() {
 
-    while (buffer.take() != STOP_VALUE){
+    while (buffer.take() >= 0){
 //      System.out.println(Thread.currentThread().getName() + " took : " + buffer.take() );
     }
   

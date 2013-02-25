@@ -86,7 +86,7 @@ public class BoundedBuffer_Test {
         testProducer.setmax(testBoundedBuffer.getCapacity() + 10);
         Thread producerThread = new Thread(testProducer); 
         producerThread.start();
-        Thread.sleep(1000);
+        Thread.sleep(1);
         //Buffer should be full
         assertEquals(testBoundedBuffer.getSize(),testBoundedBuffer.getCapacity());
         //Start consumer threads
@@ -97,7 +97,7 @@ public class BoundedBuffer_Test {
         //Check both are running 
         assertEquals("RUNNABLE",consumerThread.getState().toString());
         assertEquals("RUNNABLE",consumerThread_1.getState().toString());
-        Thread.sleep(1000);
+        Thread.sleep(1);
         //Buffer should be empty again
         assertEquals(0,testBoundedBuffer.getSize());
         //Thread should not be allive

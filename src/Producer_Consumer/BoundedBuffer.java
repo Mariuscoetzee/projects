@@ -46,7 +46,14 @@ public class BoundedBuffer  {
             }
         }
         notifyAll();
-        return boundedBufferQeue.poll();
+        
+        if (boundedBufferQeue.peek() == Producer.STOP_VALUE){
+             return Producer.STOP_VALUE;
+        }else{
+            
+            return boundedBufferQeue.poll();
+        }
+       
     }
     
     /**
