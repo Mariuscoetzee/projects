@@ -31,7 +31,10 @@ public class BoundedBuffer  {
         BoundedBuffer.capacity = capacity;
         boundedBufferQeue = new LinkedList<Integer>();
     }
-    
+    /**
+     * Removes an item from this buffer
+     * @return - the item that was removed
+     */
     public synchronized int take(){
         while (isEmpty()){
             try {
