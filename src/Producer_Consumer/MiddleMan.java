@@ -9,7 +9,7 @@ package Producer_Consumer;
  *A MiddleMan forwards items taken from one Buffer to another Buffer.
  * @author Standard
  */
-public class MiddleMan {
+public class MiddleMan implements Runnable {
         private static MiddleMan singleton = null;
         private BoundedBuffer fromBuffer;
         private BoundedBuffer toBuffer;
@@ -21,7 +21,8 @@ public class MiddleMan {
      */
        
     private MiddleMan(BoundedBuffer fromBuffer, BoundedBuffer toBuffer){
-               
+    this.fromBuffer = fromBuffer;
+    this.toBuffer = toBuffer;
     }
     
     public static MiddleMan getInstance(BoundedBuffer fromBuffer, BoundedBuffer toBuffer){
@@ -33,15 +34,16 @@ public class MiddleMan {
             return singleton;
         }    
     }
-
-    void doMiddlemanStuff() {
+ 
+    @Override
+    public void run() {
   
-  int theInt = fromBuffer.take();
-  while (theInt != 0){
+    int theInt = fromBuffer.take();
+    while (theInt != Producer.STOP_VALUE){
       theInt = fromBuffer.take();
-      System.out.println(Thread.currentThread().getName() +" Took :" + theInt + " from buffer");
+//      System.out.println(Thread.currentThread().getName() +" Took :" + theInt + " from buffer");
       toBuffer.put(theInt);
-      System.out.println(Thread.currentThread().getName() +" Put :" + theInt + " from buffer");
+//      System.out.println(Thread.currentThread().getName() +" Put :" + theInt + " from buffer");
       }
     }
     

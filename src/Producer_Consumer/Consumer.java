@@ -22,10 +22,10 @@ public class Consumer implements Runnable{
     @Override
     public void run() {
 
-    while (buffer.take() >= 0){
-//      System.out.println(Thread.currentThread().getName() + " took : " + buffer.take() );
+    while (buffer.take() != Producer.STOP_VALUE){
+        System.out.println(Thread.currentThread().getName() + " took : " + buffer.take() );
     }
-  
+    
     }
     
 }

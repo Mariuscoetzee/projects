@@ -17,9 +17,10 @@ import static org.junit.Assert.*;
 public class BoundedBuffer_Test {
     
     private BoundedBuffer testBoundedBuffer;
+    private BoundedBuffer testBoundedBuffer_1;
     private Producer testProducer;
     private Consumer testConsumer;
-   
+    private Consumer testConsumer_1;
     
     public BoundedBuffer_Test() {
     }
@@ -27,9 +28,11 @@ public class BoundedBuffer_Test {
     @Before
     public void setUp() {
         
-        testBoundedBuffer = new BoundedBuffer(100);
-        testProducer = new Producer(testBoundedBuffer.getCapacity(),testBoundedBuffer);
+        testBoundedBuffer = new BoundedBuffer(1000);
+        testBoundedBuffer_1 = new BoundedBuffer(testBoundedBuffer.getCapacity());
+        testProducer = new Producer(testBoundedBuffer.getCapacity() - 1,testBoundedBuffer);
         testConsumer = new Consumer(testBoundedBuffer);
+        testConsumer_1 = new Consumer(testBoundedBuffer_1);
         
     }
 
@@ -59,7 +62,7 @@ public class BoundedBuffer_Test {
         Thread producerThread = new Thread(testProducer); 
         producerThread.start();
         //Pause the testing thread
-        Thread.sleep(1000);
+        Thread.sleep(7000);
         //Thread should not be allive
         assertFalse(producerThread.isAlive());
         assertEquals("TERMINATED",producerThread.getState().toString());
@@ -86,7 +89,7 @@ public class BoundedBuffer_Test {
         testProducer.setmax(testBoundedBuffer.getCapacity() + 10);
         Thread producerThread = new Thread(testProducer); 
         producerThread.start();
-        Thread.sleep(1);
+        Thread.sleep(1000);
         //Buffer should be full
         assertEquals(testBoundedBuffer.getSize(),testBoundedBuffer.getCapacity());
         //Start consumer threads
@@ -97,13 +100,38 @@ public class BoundedBuffer_Test {
         //Check both are running 
         assertEquals("RUNNABLE",consumerThread.getState().toString());
         assertEquals("RUNNABLE",consumerThread_1.getState().toString());
-        Thread.sleep(1);
+        Thread.sleep(1000);
         //Buffer should be empty again
-        assertEquals(0,testBoundedBuffer.getSize());
+        assertEquals(1,testBoundedBuffer.getSize());
         //Thread should not be allive
         assertFalse(consumerThread.isAlive());
         assertEquals("TERMINATED",consumerThread.getState().toString());
         assertFalse(consumerThread_1.isAlive());
         assertEquals("TERMINATED",consumerThread_1.getState().toString());
+    }
+    
+    @Test
+    public void middleMan() throws InterruptedException{
+        //Check that buffer is empty
+        assertEquals(testBoundedBuffer.getSize(),0);
+        //Make Producer thread
+        Thread producerThread = new Thread(testProducer); 
+        //Pause the testing thread
+        Thread.sleep(1000);
+        //Make the Middlemans thread
+        MiddleMan middelMan = MiddleMan.getInstance(testBoundedBuffer, testBoundedBuffer_1);
+        Thread middlemansThread = new Thread(middelMan);
+        //Make the consumerThread
+        Thread consumerThread = new Thread(testConsumer_1);
+        // Start the threads
+        producerThread.start();
+        consumerThread.start();
+        middlemansThread.start();
+        //
+        
+        assertEquals("RUNNABLE",producerThread.getState().toString());
+        assertEquals("RUNNABLE",consumerThread.getState().toString());
+        assertEquals("RUNNABLE",middlemansThread.getState().toString());
+    
     }
 }

@@ -80,7 +80,7 @@ public class BoundedBuffer  {
     }
     
     public boolean isFull(){
-        return(capacity == boundedBufferQeue.size() + 1);
+        return(capacity == boundedBufferQeue.size());
     }
 
     public int getCapacity() {
