@@ -31,5 +31,21 @@ public class BoundedBuffer  {
         BoundedBuffer.capacity = capacity;
         boundedBufferQeue = new LinkedList<Integer>();
     }
+    
+    public synchronized int take(){
+        while (isEmpty()){
+            try {
+                wait();
+            }
+            catch (InterruptedException ex){  
+            }
+        }
+        notifyAll();
+        return boundedBufferQeue.poll();
+    }
+        
    
+    public boolean isEmpty(){
+        return (boundedBufferQeue.isEmpty());
+    }
 }
