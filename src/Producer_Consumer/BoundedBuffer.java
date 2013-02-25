@@ -46,9 +46,24 @@ public class BoundedBuffer  {
         notifyAll();
         return boundedBufferQeue.poll();
     }
+    
+    /**
+     * Put a new item into this buffer
+     * @param element - the item to be inserted 
+     */
+    public void put(int element){
         
+    }
+    /**
+     * Put a new item into this buffer
+     * @return true if empty... 
+     */    
    
     public boolean isEmpty(){
         return (boundedBufferQeue.isEmpty());
+    }
+    
+    public boolean isFull(){
+        return(capacity == boundedBufferQeue.size());
     }
 }
