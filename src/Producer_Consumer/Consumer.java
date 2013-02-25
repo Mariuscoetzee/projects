@@ -23,7 +23,7 @@ public static final int STOP_VALUE = 1;
     public void run() {
 
     while (buffer.take() != STOP_VALUE){
-      System.out.println(Thread.currentThread().getName() + " took : " + buffer.take() );
+//      System.out.println(Thread.currentThread().getName() + " took : " + buffer.take() );
     }
   
     }

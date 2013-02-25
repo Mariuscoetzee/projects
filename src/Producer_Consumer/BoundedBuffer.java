@@ -59,9 +59,9 @@ public class BoundedBuffer  {
                 wait();
             } catch (InterruptedException ex) {
             }
-            boundedBufferQeue.poll();
-            notifyAll();
         }
+        boundedBufferQeue.add(element);
+         notifyAll();
     }
     /**
      * Put a new item into this buffer
@@ -76,7 +76,7 @@ public class BoundedBuffer  {
         return(capacity == boundedBufferQeue.size());
     }
 
-    public static int getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
     

@@ -99,7 +99,7 @@ public class BoundedBuffer_Test {
         assertEquals("RUNNABLE",consumerThread_1.getState().toString());
         Thread.sleep(1000);
         //Buffer should be empty again
-        assertEquals(1,testBoundedBuffer.getSize());
+        assertEquals(0,testBoundedBuffer.getSize());
         //Thread should not be allive
         assertFalse(consumerThread.isAlive());
         assertEquals("TERMINATED",consumerThread.getState().toString());

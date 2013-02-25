@@ -33,11 +33,13 @@ public class Producer implements Runnable{
 
         for (int i = 0; i < max -1 ; i++) {
             buffer.put(i*2);
-            System.out.println("put : " + i*2 );
+//            System.out.println("put : " + i*2 );
         }
+        
        buffer.put(STOP_VALUE);
-        System.out.println("put : " + STOP_VALUE);
+       System.out.println("put : " + STOP_VALUE);
     }
+    
     public void setmax(final int max){
         this.max = max;
         
