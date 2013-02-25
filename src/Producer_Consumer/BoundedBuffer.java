@@ -6,6 +6,8 @@ package Producer_Consumer;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -51,8 +53,15 @@ public class BoundedBuffer  {
      * Put a new item into this buffer
      * @param element - the item to be inserted 
      */
-    public void put(int element){
-        
+    public synchronized void put(int element){
+        while (isFull()){
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+            }
+            boundedBufferQeue.poll();
+            notifyAll();
+        }
     }
     /**
      * Put a new item into this buffer
