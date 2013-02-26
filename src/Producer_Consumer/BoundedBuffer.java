@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Standard
  */
-public class BoundedBuffer  {
+public final  class BoundedBuffer  {
  
  /**
  * A bounded buffer. Methods are thread safe
