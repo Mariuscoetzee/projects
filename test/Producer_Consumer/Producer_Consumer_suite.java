@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({BoundedBuffer_Test.class, Middleman_Test.class})
-public class Producer_Consumer {
+public class Producer_Consumer_suite {
 
     @Before
     public void setUp() throws Exception {

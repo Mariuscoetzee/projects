@@ -18,7 +18,6 @@ public class BoundedBuffer  {
  /**
  * A bounded buffer. Methods are thread safe
  */
-    private static final int STOP_VALUE = 1;
     private static Queue<Integer> boundedBufferQeue;
     private static int capacity;
     
@@ -40,6 +39,7 @@ public class BoundedBuffer  {
     public synchronized int take(){
         while (isEmpty()){
             try {
+                System.out.println(Thread.currentThread().getName() + " waiting ....");
                 wait();
             }
             catch (InterruptedException ex){  

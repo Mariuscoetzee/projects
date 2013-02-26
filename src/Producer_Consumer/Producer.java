@@ -32,10 +32,10 @@ public class Producer implements Runnable{
     public void run() {
         for (int i = 0; i < max ; i++) {
             buffer.put(i);
-//            System.out.println("put : " + i*2 );
+            System.out.println("put : " + i );
         }
        buffer.put(STOP_VALUE);
-//       System.out.println("put : " + STOP_VALUE);
+       System.out.println("put : " + STOP_VALUE);
     }
     
     public void setmax(final int max){
