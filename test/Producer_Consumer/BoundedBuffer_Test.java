@@ -62,7 +62,7 @@ public class BoundedBuffer_Test {
         Thread producerThread = new Thread(testProducer); 
         producerThread.start();
         //Pause the testing thread
-        Thread.sleep(7000);
+        Thread.sleep(100);
         //Thread should not be allive
         assertFalse(producerThread.isAlive());
         assertEquals("TERMINATED",producerThread.getState().toString());
@@ -132,6 +132,6 @@ public class BoundedBuffer_Test {
         assertEquals("RUNNABLE",producerThread.getState().toString());
         assertEquals("RUNNABLE",consumerThread.getState().toString());
         assertEquals("RUNNABLE",middlemansThread.getState().toString());
-    
+    Thread.sleep(3000);
     }
 }
