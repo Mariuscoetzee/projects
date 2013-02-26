@@ -21,9 +21,9 @@ public class Consumer implements Runnable{
  
     @Override
     public void run() {
-
-    while (buffer.take() != Producer.STOP_VALUE){
-        System.out.println(Thread.currentThread().getName() + " took : " + buffer.take() );
+    int value = buffer.take();
+    while (value != Producer.STOP_VALUE){
+        value = buffer.take();    
     }
     
     }

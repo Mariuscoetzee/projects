@@ -13,7 +13,7 @@ import org.junit.runners.Suite;
  * @author Standard
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({BoundedBuffer_Test.class, Middleman_Test.class})
+@Suite.SuiteClasses({Duplicator_Test.class, Middleman_Test.class, BoundedBuffer_Test.class})
 public class Producer_Consumer_suite {
 
     @Before

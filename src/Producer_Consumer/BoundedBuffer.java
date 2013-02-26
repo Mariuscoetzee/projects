@@ -6,8 +6,6 @@ package Producer_Consumer;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +17,7 @@ public final  class BoundedBuffer  {
  * A bounded buffer. Methods are thread safe
  */
     private static Queue<Integer> boundedBufferQeue;
-    private static int capacity;
+    private int capacity;
     
     /**
      * 
@@ -29,7 +27,7 @@ public final  class BoundedBuffer  {
         if (capacity == 0){
             throw new IllegalArgumentException("A bounded buffer has to have a capacity greater than 0");
         }
-        BoundedBuffer.capacity = capacity;
+        this.capacity = capacity;
         boundedBufferQeue = new LinkedList<Integer>();
     }
     /**
@@ -48,6 +46,7 @@ public final  class BoundedBuffer  {
         notifyAll();
         
         if (boundedBufferQeue.peek() == Producer.STOP_VALUE){
+             System.out.println(Thread.currentThread().getName() + " peeked :" + Producer.STOP_VALUE );
              return Producer.STOP_VALUE;
         }else{
             
@@ -68,8 +67,9 @@ public final  class BoundedBuffer  {
             } catch (InterruptedException ex) {
             }
         }
+        System.out.println(Thread.currentThread().getName() + " Added : " + element);
         boundedBufferQeue.add(element);
-         notifyAll();
+        notify();
     }
     /**
      * Put a new item into this buffer
@@ -81,7 +81,7 @@ public final  class BoundedBuffer  {
     }
     
     public boolean isFull(){
-        return(capacity == boundedBufferQeue.size());
+        return(boundedBufferQeue.size()== capacity);
     }
 
     public int getCapacity() {
