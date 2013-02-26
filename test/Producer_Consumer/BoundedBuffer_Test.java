@@ -28,8 +28,8 @@ public class BoundedBuffer_Test {
     @Before
     public void setUp() {
         
-        testBoundedBuffer = new BoundedBuffer(1000);
-        testBoundedBuffer_1 = new BoundedBuffer(testBoundedBuffer.getCapacity());
+        testBoundedBuffer = new BoundedBuffer(1000, "bb");
+        testBoundedBuffer_1 = new BoundedBuffer(testBoundedBuffer.getCapacity(), "bb");
         testProducer = new Producer(testBoundedBuffer.getCapacity() - 1,testBoundedBuffer);
         testConsumer = new Consumer(testBoundedBuffer);
         testConsumer_1 = new Consumer(testBoundedBuffer_1);

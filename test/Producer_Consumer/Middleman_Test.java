@@ -22,7 +22,7 @@ public class Middleman_Test {
     
     @Before
     public void setUp() {
-        testBoundedBuffer = new BoundedBuffer(1000);
+        testBoundedBuffer = new BoundedBuffer(1000, "bb");
         testProducer = new Producer(testBoundedBuffer.getCapacity() - 1,testBoundedBuffer);
         testConsumer = new Consumer(testBoundedBuffer);
     }

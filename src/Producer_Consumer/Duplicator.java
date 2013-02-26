@@ -22,8 +22,9 @@ public class Duplicator implements Runnable {
     @Override
     public void run() {
         int i;
-        for (i = 0; i != Producer.STOP_VALUE; i++) {
-            inputBuffer.take();
+//        int count = 0;
+        for (i = 0; i != Producer.STOP_VALUE; i = inputBuffer.take()) {
+            System.out.println(Thread.currentThread().getName() + " took : "+ i );
         }
     }
     

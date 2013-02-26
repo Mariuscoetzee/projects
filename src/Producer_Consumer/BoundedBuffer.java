@@ -18,12 +18,14 @@ public final  class BoundedBuffer  {
  */
     private static Queue<Integer> boundedBufferQeue;
     private int capacity;
+    private final String name;
     
     /**
      * 
      * @param capacity - The capacity of the buffer. The capacity remains fixed throughout the buffers life. 
      */
-    public BoundedBuffer(final int capacity){
+    public BoundedBuffer(final int capacity, String name){
+        this.name = name;
         if (capacity == 0){
             throw new IllegalArgumentException("A bounded buffer has to have a capacity greater than 0");
         }
@@ -46,7 +48,7 @@ public final  class BoundedBuffer  {
         notifyAll();
         
         if (boundedBufferQeue.peek() == Producer.STOP_VALUE){
-             System.out.println(Thread.currentThread().getName() + " peeked :" + Producer.STOP_VALUE );
+             System.out.println(Thread.currentThread().getName() + " peeked :" + Producer.STOP_VALUE  + " buffer : "+ this.name );
              return Producer.STOP_VALUE;
         }else{
             return boundedBufferQeue.poll();
