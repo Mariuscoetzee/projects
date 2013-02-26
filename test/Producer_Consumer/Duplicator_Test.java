@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
  * @author Standard
  */
 public class Duplicator_Test {
+    
     private BoundedBuffer inputBuffer;
     private BoundedBuffer outputBuffer;
     private BoundedBuffer outputBuffer_1;
