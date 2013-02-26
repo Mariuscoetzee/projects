@@ -41,9 +41,8 @@ public class MiddleMan implements Runnable {
     int theInt = fromBuffer.take();
     while (theInt != Producer.STOP_VALUE){
       theInt = fromBuffer.take();
-//      System.out.println(Thread.currentThread().getName() +" Took :" + theInt + " from buffer");
       toBuffer.put(theInt);
-//      System.out.println(Thread.currentThread().getName() +" Put :" + theInt + " from buffer");
+
       }
     }
     

@@ -56,8 +56,8 @@ public class Duplicator_Test {
         assertEquals("RUNNABLE",duplicatorThread.getState().toString());
         
         //    
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         
-//        assertEquals(producer, this);
+
     }
 }

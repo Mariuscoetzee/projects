@@ -21,8 +21,10 @@ public class Duplicator implements Runnable {
 
     @Override
     public void run() {
-       
-        
+        int i;
+        for (i = 0; i != Producer.STOP_VALUE; i++) {
+            inputBuffer.take();
+        }
     }
     
 }
