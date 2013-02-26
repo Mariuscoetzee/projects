@@ -39,7 +39,7 @@ public final  class BoundedBuffer  {
     public synchronized int take(){
         while (isEmpty()){
             try {
-                System.out.println(Thread.currentThread().getName() + " waiting ....");
+                System.out.println(Thread.currentThread().getName() + " waiting ...");
                 wait();
             }
             catch (InterruptedException ex){  
@@ -63,6 +63,7 @@ public final  class BoundedBuffer  {
     public synchronized void put(int element){
         while (isFull()){
             try {
+                System.out.println(Thread.currentThread().getName() + " waiting ...");
                 wait();
             } catch (InterruptedException ex) {
             }
