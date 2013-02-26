@@ -46,6 +46,7 @@ public class BoundedBuffer_Test {
        Thread consumerThread = new Thread (testConsumer,"consumer_thread_");
        consumerThread.start();
        Thread.sleep(1000);
+       Thread.sleep(1000);
        // check that it is waiting
        assertTrue(consumerThread.isAlive());
        assertEquals(consumerThread.getState().toString(),"WAITING");
