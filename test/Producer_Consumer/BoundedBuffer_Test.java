@@ -110,29 +110,5 @@ public class BoundedBuffer_Test {
         assertEquals("TERMINATED",consumerThread_1.getState().toString());
     }
     
-    @Test
-    public void middleMan() throws InterruptedException{
-        //Check that buffer is empty
-        assertEquals(testBoundedBuffer.getSize(),0);
-        //Make Producer thread
-        Thread producerThread = new Thread(testProducer); 
-        //Pause the testing thread
-        Thread.sleep(1000);
-        //Make the Middlemans thread
-        MiddleMan middelMan = MiddleMan.getInstance(testBoundedBuffer, testBoundedBuffer_1);
-        Thread middlemansThread = new Thread(middelMan);
-        //Make the consumerThread
-        Thread consumerThread = new Thread(testConsumer_1);
-        // Start the threads
-        producerThread.start();
-        consumerThread.start();
-        middlemansThread.start();
-        //
-        
-        assertEquals("RUNNABLE",producerThread.getState().toString());
-        assertEquals("RUNNABLE",consumerThread.getState().toString());
-        assertEquals("RUNNABLE",middlemansThread.getState().toString());
-    Thread.sleep(3000);
-    
-    }
+
 }
