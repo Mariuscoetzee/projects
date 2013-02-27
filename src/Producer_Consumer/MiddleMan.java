@@ -11,8 +11,8 @@ package Producer_Consumer;
  */
 public class MiddleMan implements Runnable {
         private static MiddleMan singleton = null;
-        private BoundedBuffer fromBuffer;
-        private BoundedBuffer toBuffer;
+        private Buffer fromBuffer;
+        private Buffer toBuffer;
         
     /**
      * Creates a new instance of MiddleMan
@@ -20,12 +20,12 @@ public class MiddleMan implements Runnable {
      * @param toBuffer - The Buffer where the MiddleMan should put the items.
      */
        
-    private MiddleMan(BoundedBuffer fromBuffer, BoundedBuffer toBuffer){
+    private MiddleMan(Buffer fromBuffer, Buffer toBuffer){
     this.fromBuffer = fromBuffer;
     this.toBuffer = toBuffer;
     }
     
-    public static MiddleMan getInstance(BoundedBuffer fromBuffer, BoundedBuffer toBuffer){
+    public static MiddleMan getInstance(Buffer fromBuffer, Buffer toBuffer){
         if (singleton == null){
         return new MiddleMan(fromBuffer, toBuffer);   
         }

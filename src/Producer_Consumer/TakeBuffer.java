@@ -9,6 +9,6 @@ package Producer_Consumer;
  * @author Standard
  */
 public interface TakeBuffer {
-    int 	size();
+    int 	getSize();
     int 	take();
 }

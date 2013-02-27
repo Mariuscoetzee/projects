@@ -9,22 +9,21 @@ package Producer_Consumer;
 public class Consumer implements Runnable{
 
 
-    private BoundedBuffer buffer;
+    private TakeBuffer buffer;
     /**
      * Creates a new instance of Consumer 
      * @param buffer - The Buffer where this Consumer takes its items.
      */
-    public Consumer(BoundedBuffer buffer) {
+    public Consumer(TakeBuffer buffer) {
         this.buffer = buffer;
     }
-
- 
+    
     @Override
     public void run() {
     int value = buffer.take();
     while (value != Producer.STOP_VALUE){
         value = buffer.take();    
-        System.out.println(Thread.currentThread().getName() + " took : " + value + "from : " + buffer.name);
+        System.out.println(Thread.currentThread().getName() + " took : " + value + "from : ");
     }
     
     }

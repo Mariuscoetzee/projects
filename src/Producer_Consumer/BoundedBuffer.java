@@ -11,7 +11,7 @@ import java.util.Queue;
  *
  * @author Standard
  */
-public final  class BoundedBuffer  {
+public final  class BoundedBuffer implements Buffer   {
  
  /**
  * A bounded buffer. Methods are thread safe
@@ -24,7 +24,7 @@ public final  class BoundedBuffer  {
      * 
      * @param capacity - The capacity of the buffer. The capacity remains fixed throughout the buffers life. 
      */
-    public BoundedBuffer(final int capacity, String name){
+    public BoundedBuffer (final int capacity, String name){
         this.name = name;
         if (capacity == 0){
             throw new IllegalArgumentException("A bounded buffer has to have a capacity greater than 0");
@@ -89,7 +89,9 @@ public final  class BoundedBuffer  {
         return capacity;
     }
     
+    @Override
     public int getSize(){
         return boundedBufferQeue.size();
     }
+
 }
