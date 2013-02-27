@@ -25,6 +25,13 @@ public class Duplicator implements Runnable {
 //        int count = 0;
         for (i = 0; i != Producer.STOP_VALUE; i = inputBuffer.take()) {
             System.out.println(Thread.currentThread().getName() + " took : "+ i );
+            if (outputBuffer.getSize() > outputBuffer_1.getSize()){
+                 outputBuffer_1.put(i);
+            }else{
+                 outputBuffer.put(i);
+            }
+            System.out.println(Thread.currentThread().getName() + " took : "+ i );
+            
         }
     }
     

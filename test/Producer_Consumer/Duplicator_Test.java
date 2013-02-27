@@ -48,18 +48,15 @@ public class Duplicator_Test {
         
         producerThread.start();
         duplicatorThread.start();
-        Thread.sleep(5000);
         consumerThread.start();
         consumerThread_1.start();
-        Thread.sleep(5000);
+        Thread.sleep(7000);
        
-        
+        assertEquals(1,inputBuffer.getSize());
+        assertEquals(0,outputBuffer.getSize());
+        assertEquals(0,outputBuffer_1.getSize());
         //Check all threads running 
-//        assertEquals("RUNNABLE",producerThread.getState().toString());
-//        assertEquals("RUNNABLE",consumerThread.getState().toString());
-//        assertEquals("RUNNABLE",consumerThread_1.getState().toString());
-//        assertEquals("RUNNABLE",duplicatorThread.getState().toString());
-//        
+       
         //    
         
         

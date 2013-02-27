@@ -16,9 +16,9 @@ public final  class BoundedBuffer  {
  /**
  * A bounded buffer. Methods are thread safe
  */
-    private static Queue<Integer> boundedBufferQeue;
+    private Queue<Integer> boundedBufferQeue;
     private int capacity;
-    private final String name;
+    public final String name;
     
     /**
      * 

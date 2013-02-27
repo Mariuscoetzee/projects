@@ -24,6 +24,7 @@ public class Consumer implements Runnable{
     int value = buffer.take();
     while (value != Producer.STOP_VALUE){
         value = buffer.take();    
+        System.out.println(Thread.currentThread().getName() + " took : " + value + "from : " + buffer.name);
     }
     
     }
