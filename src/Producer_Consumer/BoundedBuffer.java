@@ -5,18 +5,12 @@
 package Producer_Consumer;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  *
  * @author Standard
  */
-public final  class BoundedBuffer implements Buffer   {
- 
- /**
- * A bounded buffer. Methods are thread safe
- */
-    private Queue<Integer> boundedBufferQeue;
+public final  class BoundedBuffer extends AbstractBuffer   {
     private int capacity;
     public final String name;
     
@@ -31,29 +25,6 @@ public final  class BoundedBuffer implements Buffer   {
         }
         this.capacity = capacity;
         boundedBufferQeue = new LinkedList<Integer>();
-    }
-    /**
-     * Removes an item from this buffer
-     * @return - the item that was removed
-     */
-    public synchronized int take(){
-        while (isEmpty()){
-            try {
-                System.out.println(Thread.currentThread().getName() + " waiting ...");
-                wait();
-            }
-            catch (InterruptedException ex){  
-            }
-        }
-        notifyAll();
-        
-        if (boundedBufferQeue.peek() == Producer.STOP_VALUE){
-             System.out.println(Thread.currentThread().getName() + " peeked :" + Producer.STOP_VALUE  + " buffer : "+ this.name );
-             return Producer.STOP_VALUE;
-        }else{
-            return boundedBufferQeue.poll();
-        }
-       
     }
     
     /**
@@ -72,14 +43,6 @@ public final  class BoundedBuffer implements Buffer   {
         boundedBufferQeue.add(element);
         notify();
     }
-    /**
-     * Put a new item into this buffer
-     * @return true if empty... 
-     */    
-   
-    public boolean isEmpty(){
-        return (boundedBufferQeue.isEmpty());
-    }
     
     public boolean isFull(){
         return(boundedBufferQeue.size()== capacity);
@@ -87,11 +50,6 @@ public final  class BoundedBuffer implements Buffer   {
 
     public int getCapacity() {
         return capacity;
-    }
-    
-    @Override
-    public int getSize(){
-        return boundedBufferQeue.size();
     }
 
 }

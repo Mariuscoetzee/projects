@@ -25,7 +25,7 @@ public class Middleman_Test {
     public void setUp() {
         testBuffer = new BoundedBuffer(1000, "bb");
         testBuffer_1 = new BoundedBuffer(1000, "bb");
-        testProducer = new Producer(testBuffer.getCapacity() - 1,testBuffer);
+        testProducer = new Producer(999,testBuffer);
         testConsumer = new Consumer(testBuffer_1);
     }
     

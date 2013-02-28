@@ -13,5 +13,4 @@ public interface PutBuffer {
     boolean 	isEmpty();
     void 	put(int element);
     int 	getSize();
-    int         getCapacity();
 }

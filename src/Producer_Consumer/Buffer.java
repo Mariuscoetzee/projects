@@ -10,5 +10,5 @@ package Producer_Consumer;
  */
 public interface Buffer extends PutBuffer, TakeBuffer {
   
-    int getCapacity();
+   
 }

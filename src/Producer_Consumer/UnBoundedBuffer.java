@@ -8,31 +8,15 @@ package Producer_Consumer;
  *
  * @author Standard
  */
-public class UnBoundedBuffer implements Buffer {
+public  class UnBoundedBuffer extends AbstractBuffer {
 
-    @Override
-    public int getCapacity() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+ 
 
     @Override
     public void put(int element) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public int getSize() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int take() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+  
     
 }
